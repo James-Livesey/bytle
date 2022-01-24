@@ -72,7 +72,7 @@ bytle-cell span {
 
 #entry {
     width: 100%;
-    padding-top: 5vh;
+    margin-top: 5vh;
     background-color: transparent;
     color: inherit;
     font-size: 5vh;

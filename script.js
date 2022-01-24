@@ -5,7 +5,7 @@ export var board;
 export var entry;
 
 export var currentRow = 0;
-export var targetNumber = 69; // TODO: lol, will generate every day at some point
+export var targetNumber = 0;
 export var previousEntries = [];
 
 function setCellContents(cell, contents) {
@@ -36,6 +36,10 @@ function generateBoard() {
 
         board.append(row);
     }
+}
+
+export function generateTargetNumber() {
+    targetNumber = ((new Date().getDate() * 69) + (new Date().getMonth() * 420) + (new Date().getYear() * 80085)) % 256;
 }
 
 export function setRowValue(value, row = currentRow) {
@@ -72,7 +76,6 @@ export function checkCurrentRow() {
     });
 
     targetEntry.forEach(function(digit, i) {
-        console.log(digit, i, pool);
         if (lastEntry[i] == digit) {
             states[i] = "correct";
             pool[digit] = (pool[digit] || 0) - 1;
@@ -95,6 +98,10 @@ export function checkCurrentRow() {
 }
 
 export function acceptEntry(value = entry.value) {
+    if (currentRow >= TURNS) {
+        return;
+    }
+
     var binary = valueToBinary(value);
 
     setRowValue(binary);
@@ -121,6 +128,7 @@ window.addEventListener("load", function() {
     board = document.querySelector("bytle-board");
     entry = document.querySelector("#entry");
 
+    generateTargetNumber();
     generateBoard();
     adjustCells();
 
