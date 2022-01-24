@@ -96,13 +96,21 @@ bytle-cell[bytle-state="notQuite"] {
 
 #options a {
     margin: -0.2em;
+    margin-top: -0.4em;
     padding: 0.2em;
+    padding-top: 0.4em;
     color: black;
     text-decoration: none;
 }
 
 #options a:hover {
     background-color: var(--notYet);
+}
+
+#options img {
+    position: relative;
+    top: 0.1em;
+    height: 1em;
 }
 
 #entry {
