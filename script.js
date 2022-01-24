@@ -6,6 +6,7 @@ export const ZEROTH_BYTLE = new Date("2022-01-24T00:00:00.000Z");
 export var main;
 export var board;
 export var entry;
+export var shareButton;
 
 export var currentRow = 0;
 export var targetNumber = 0;
@@ -135,6 +136,8 @@ export function acceptEntry(value = entry.value, save = true) {
         return;
     }
 
+    main.setAttribute("bytle-state", "playing");
+
     var binary = valueToBinary(value);
 
     setRowValue(binary);
@@ -187,6 +190,42 @@ export function acceptEntry(value = entry.value, save = true) {
     }
 }
 
+export function copyGameToClipboard() {
+    var contents = `jamesl.me/bytle ${getBytleNumber().toString(2).padStart(8, "0")} ${currentRow.toString(2).padStart(3, "0")}/110\n\n`;
+
+    for (var i = 0; i < currentRow; i++) {
+        var cells = document.querySelectorAll("bytle-row")[i].querySelectorAll("bytle-cell");
+
+        cells.forEach(function(cell) {
+            switch (cell.getAttribute("bytle-state")) {
+                case "correct":
+                    contents += "🟩";
+                    break;
+
+                case "almost":
+                    contents += "🟨";
+                    break;
+
+                default:
+                    contents += "⬜";
+                    break;
+            }
+        });
+
+        if (i != currentRow - 1) {
+            contents += "\n";
+        }
+    }
+
+    navigator.clipboard.writeText(contents);
+
+    shareButton.textContent = "Copied to clipboard!";
+
+    setTimeout(function() {
+        shareButton.textContent = "Share";
+    }, 2_000);
+}
+
 function adjustCells() {
     var firstCell = document.querySelector("bytle-cell");
     var width = firstCell.clientWidth;
@@ -201,6 +240,7 @@ window.addEventListener("load", function() {
     main = document.querySelector("main");
     board = document.querySelector("bytle-board");
     entry = document.querySelector("#entry");
+    shareButton = document.querySelector("#shareButton");
 
     document.querySelector("#bytleNumber").textContent = "#" + getBytleNumber().toString(2).padStart(8, "0");
 
@@ -238,6 +278,10 @@ window.addEventListener("load", function() {
         if (Number.isNaN(Number(event.key))) {
             event.preventDefault();
         }
+    });
+
+    shareButton.addEventListener("click", function() {
+        copyGameToClipboard();
     });
 });
 

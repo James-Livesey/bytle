@@ -86,7 +86,15 @@ bytle-cell span {
     outline: none;
 }
 
+#entry:focus::placeholder {
+    color: transparent;
+}
+
 main[bytle-state~="finished"] #entry {
+    display: none;
+}
+
+main[bytle-state~="playing"] #instructions, main[bytle-state~="finished"] #instructions {
     display: none;
 }
 
@@ -109,4 +117,23 @@ main[bytle-state~="lost"] #streakLabel {
 
 #streakLabel p {
     margin: 0;
+}
+
+main[bytle-state~="lost"] #shareButton {
+    display: none;
+}
+
+button {
+    background-color: var(--correct);
+    color: var(--correctText);
+    font-size: 1rem;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+#shareButton {
+    margin-top: 0.5rem;
 }

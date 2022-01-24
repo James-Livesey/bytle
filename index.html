@@ -11,7 +11,15 @@
         <main>
             <h1>Bytle <span id="bytleNumber"></span></h1>
             <bytle-board></bytle-board>
-            <input pattern="[0-9]*" id="entry">
+            <input pattern="[0-9]*" placeholder="Enter a number" id="entry">
+            <div id="instructions">
+                <ol>
+                    <li value="0">Guess the base-10 (denary) number</li>
+                    <li value="1">It'll be converted into binary</li>
+                    <li value="2">The binary digits you got in the right place are 🟩, almost in the right place are 🟨, and wrong are ⬜</li>
+                    <li value="3">Repeat until it's all 🟩</li>
+                </ol>
+            </div>
             <div id="result">
                 <h2>I think you may be a cheater!</h2>
                 <p id="comment">I see you, DevTools user...</p>
@@ -19,6 +27,7 @@
                     <p>Win streak: <strong id="streak"></strong></p>
                     <small>Win the game every day to keep up your streak!</small>
                 </div>
+                <button id="shareButton">Share</button>
             </div>
         </main>
     </body>
