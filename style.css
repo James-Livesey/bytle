@@ -1,0 +1,82 @@
+:root {
+    --correct: #6aaa64;
+    --correctText: white;
+    --almost: #c9b458;
+    --almostText: white;
+    --notQuite: #787c7e;
+    --notQuiteText: white;
+    --notYet: #d8d8d8;
+    --notYetText: black;
+    --entry: #878a8c;
+    --entryText: black;
+}
+
+* {
+    font-family: system-ui, sans-serif;
+    box-sizing: border-box;
+}
+
+main {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+}
+
+bytle-board {
+    display: block;
+    width: 100%;
+    margin: auto;
+}
+
+bytle-row {
+    display: flex;
+}
+
+bytle-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    margin: 3px;
+    color: var(--entryText);
+    border: 2px solid var(--notYet);
+}
+
+bytle-cell[bytle-state="entry"] {
+    border: 2px solid var(--entry);
+    color: var(--entryText);
+}
+
+bytle-cell[bytle-state="correct"] {
+    background-color: var(--correct);
+    color: var(--correctText);
+    border: none;
+}
+
+bytle-cell[bytle-state="almost"] {
+    background-color: var(--almost);
+    color: var(--almostText);
+    border: none;
+}
+
+bytle-cell[bytle-state="notQuite"] {
+    background-color: var(--notQuite);
+    color: var(--notQuiteText);
+    border: none;
+}
+
+bytle-cell span {
+    padding-top: 10%;
+}
+
+#entry {
+    width: 100%;
+    padding-top: 5vh;
+    background-color: transparent;
+    color: inherit;
+    font-size: 5vh;
+    text-align: center;
+    border: none;
+    outline: none;
+}
