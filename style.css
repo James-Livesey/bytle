@@ -141,3 +141,9 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 input[type="number"] {
     -moz-appearance: textfield;
 }
+
+#counter {
+    position: fixed;
+    bottom: 0;
+    right: 5px;
+}
