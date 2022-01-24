@@ -9,9 +9,17 @@
     </head>
     <body>
         <main>
-            <h1>Bytle</h1>
+            <h1>Bytle <span id="bytleNumber"></span></h1>
             <bytle-board></bytle-board>
             <input pattern="[0-9]*" id="entry">
+            <div id="result">
+                <h2>I think you may be a cheater!</h2>
+                <p id="comment">I see you, DevTools user...</p>
+                <div id="streakLabel">
+                    <p>Win streak: <strong id="streak"></strong></p>
+                    <small>Win the game every day to keep up your streak!</small>
+                </div>
+            </div>
         </main>
     </body>
 </html>

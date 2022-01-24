@@ -70,6 +70,11 @@ bytle-cell span {
     padding-top: 10%;
 }
 
+#bytleNumber {
+    font-size: 0.5em;
+    color: var(--notQuite);
+}
+
 #entry {
     width: 100%;
     margin-top: 5vh;
@@ -79,4 +84,29 @@ bytle-cell span {
     text-align: center;
     border: none;
     outline: none;
+}
+
+main[bytle-state~="finished"] #entry {
+    display: none;
+}
+
+#result {
+    text-align: center;
+}
+
+main:not([bytle-state~="finished"]) #result {
+    display: none;
+}
+
+#streakLabel {
+    color: var(--almost);
+    font-size: 1.2em;
+}
+
+main[bytle-state~="lost"] #streakLabel {
+    display: none;
+}
+
+#streakLabel p {
+    margin: 0;
 }
