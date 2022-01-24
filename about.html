@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bytle</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+        <meta name="description" content="A Wordle-like game where you have to guess the unsigned 8-bit binary number!">
+        <link rel="shortcut icon" href="media/icon.png">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <main>
+            <div id="options">
+                <a href="index.html" aria-label="Back">↩ Back</a>
+            </div>
+            <h1>Bytle</h1>
+            <p>A <a href="https://www.powerlanguage.co.uk/wordle/" target="_blank">Wordle</a>-like game where you have to guess the unsigned 8-bit binary number!</p>
+            <p>Built by <a href="https://github.com/James-Livesey" target="_blank">James Livesey</a> in about 2 hours and 15 minutes</p>
+            <p>
+                <a href="https://github.com/James-Livesey/bytle" target="_blank">🌟 Star Bytle on GitHub</a>
+            </p>
+            <hr>
+            <h2>FAQs</h2>
+            <details>
+                <summary>What's the objective of the game?</summary>
+                <p>
+                    The objective is to guess today's Bytle number (which can be
+                    in the range of 0-255 inclusive). You have 6 turns to do so,
+                    and a hint is given after each turn as to what today's Bytle
+                    number is.
+                </p>
+                <p>
+                    To play the game, you need to enter your guess as a base-10
+                    (denary) number. Once you've entered it, the appropriate row
+                    (corresponding to the current turn) will show your number in
+                    binary. For each bit that's correct, the bit's cell will be
+                    🟩. If a bit is in the wrong place, then the cell will be
+                    🟨, and if it's totally wrong, it'll be ⬜.
+                </p>
+            </details>
+            <details>
+                <summary>Once I've played today's Bytle, can I play another one?</summary>
+                <p>
+                    Yes, but you'll need to wait until tommorow to play the next
+                    Bytle. It's part of the novelty of Wordle-like games — you
+                    only get one shot at the game every day.
+                </p>
+            </details>
+            <details>
+                <summary>Why did you create this?</summary>
+                <p>
+                    My friend Ben and I were coming up with stupid versions of
+                    Wordle after looking at
+                    <a href="https://converged.yt/primel/" target="_blank">Primel</a>,
+                    which is yet another clone of Wordle, but to do with
+                    numbers. We thought how could we make the most
+                    <em>cursed</em> version of the game — and that's how Bytle
+                    came into existence!
+                </p>
+            </details>
+            <details>
+                <summary>This is stupid — you can literally get it in two turns!</summary>
+                <p>
+                    We know! Not as fun when you do it strategically, though. In
+                    both Wordle and Bytle, you can even get it in one turn if
+                    you're lucky enough. Regardless of strategy, you'll still be
+                    learning how to mentally convert denary numbers into binary!
+                </p>
+            </details>
+            <details>
+                <summary>I am from Hacker News — how can I submit a formal complaint?</summary>
+                <p>
+                    Please submit your complaints to /dev/null
+                    (<a href="about:blank" target="_blank">official website</a>),
+                    where they will be fully reviewed and ignored.
+                </p>
+            </details>
+        </main>
+    </body>
+</html>
