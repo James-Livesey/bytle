@@ -7,8 +7,6 @@
     --notQuiteText: white;
     --notYet: #d8d8d8;
     --notYetText: black;
-    --entry: #878a8c;
-    --entryText: black;
 }
 
 * {
@@ -39,31 +37,32 @@ bytle-cell {
     width: 100%;
     height: 40px;
     margin: 3px;
-    color: var(--entryText);
+    color: transparent;
     border: 2px solid var(--notYet);
+    transform: rotateX(180deg);
 }
 
-bytle-cell[bytle-state="entry"] {
-    border: 2px solid var(--entry);
-    color: var(--entryText);
+bytle-cell[bytle-state="correct"], bytle-cell[bytle-state="almost"], bytle-cell[bytle-state="notQuite"] {
+    transform: rotateX(360deg);
+    transition: 1s transform, 0.01s background-color ease 0.3s,  0.01s color ease 0.3s, 0.01s border ease 0.3s;
 }
 
 bytle-cell[bytle-state="correct"] {
     background-color: var(--correct);
     color: var(--correctText);
-    border: none;
+    border: 2px solid transparent;
 }
 
 bytle-cell[bytle-state="almost"] {
     background-color: var(--almost);
     color: var(--almostText);
-    border: none;
+    border: 2px solid transparent;
 }
 
 bytle-cell[bytle-state="notQuite"] {
     background-color: var(--notQuite);
     color: var(--notQuiteText);
-    border: none;
+    border: 2px solid transparent;
 }
 
 #bytleNumber {
