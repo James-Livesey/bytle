@@ -280,6 +280,12 @@ window.addEventListener("load", function() {
         }
     });
 
+    entry.addEventListener("blur", function() {
+        if (entry.value != "") {
+            acceptEntry();
+        }
+    });
+
     shareButton.addEventListener("click", function() {
         copyGameToClipboard();
     });
