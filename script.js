@@ -173,7 +173,7 @@ export function acceptEntry(value = entry.value, save = true) {
 
         document.querySelector("#result h2").textContent = "You got it!";
         document.querySelector("#result #comment").textContent = `You found today's Bytle in ${currentRow.toString(2).padStart(3, "0")} tries. Don't forget to come back tomorrow for another game!`;
-        document.querySelector("#result #streak").textContent = streak;
+        document.querySelector("#result #streak").textContent = streak == 1 ? "1 day" : `${streak} days`;
 
         main.setAttribute("bytle-state", "finished won");
     } else if (currentRow >= TURNS) {
