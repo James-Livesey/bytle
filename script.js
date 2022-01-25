@@ -58,9 +58,11 @@ export function setRowValue(value, row = currentRow) {
     });
 }
 
-export function setRowStates(states, row = currentRow) {
+export function setRowStates(states, row = currentRow, animate = true) {
     document.querySelectorAll("bytle-row")[row].querySelectorAll("bytle-cell").forEach(function(cell, i) {
-        setCellState(cell, states[i]);
+        setTimeout(function() {
+            setCellState(cell, states[i]);
+        }, animate ? i * 200 : 0);
     });
 }
 
@@ -91,7 +93,7 @@ export function setStreak(won = false) {
     return Number(localStorage.getItem("bytle_winStreak"));
 }
 
-export function checkCurrentRow() {
+export function checkCurrentRow(animate = true) {
     var lastEntry = valueToBinary(previousEntries[previousEntries.length - 1]);
     var targetEntry = valueToBinary(targetNumber);
     var states = new Array(WORD_LENGTH).fill("notQuite");
@@ -128,10 +130,10 @@ export function checkCurrentRow() {
 
     previousStates = states;
 
-    setRowStates(states);
+    setRowStates(states, currentRow, animate);
 }
 
-export function acceptEntry(value = entry.value, save = true) {
+export function acceptEntry(value = entry.value, save = true, animate = true) {
     if (finishedGame) {
         return;
     }
@@ -149,7 +151,7 @@ export function acceptEntry(value = entry.value, save = true) {
         localStorage.setItem("bytle_currentGame", JSON.stringify(previousEntries));
     }
 
-    checkCurrentRow();
+    checkCurrentRow(animate);
 
     entry.value = "";
     currentRow++;
@@ -258,7 +260,7 @@ window.addEventListener("load", function() {
         try {
             var entries = JSON.parse(localStorage.getItem("bytle_currentGame"));
 
-            entries.forEach((entry) => acceptEntry(entry, false));
+            entries.forEach((entry) => acceptEntry(entry, false, false));
         } catch (e) {}
     }
 

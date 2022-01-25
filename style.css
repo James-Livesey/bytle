@@ -7,8 +7,6 @@
     --notQuiteText: white;
     --notYet: #d8d8d8;
     --notYetText: black;
-    --entry: #878a8c;
-    --entryText: black;
 }
 
 * {
@@ -16,10 +14,30 @@
     box-sizing: border-box;
 }
 
+a {
+    color: var(--correct);
+}
+
+hr {
+    height: 0.2rem;
+    background-color: var(--notYet);
+    border: none;
+}
+
+details {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+details summary {
+    cursor: pointer;
+}
+
 main {
     width: 100%;
     max-width: 500px;
     margin: auto;
+    padding-bottom: 10px;
 }
 
 bytle-board {
@@ -39,36 +57,60 @@ bytle-cell {
     width: 100%;
     height: 40px;
     margin: 3px;
-    color: var(--entryText);
+    color: transparent;
     border: 2px solid var(--notYet);
+    transform: rotateX(180deg);
 }
 
-bytle-cell[bytle-state="entry"] {
-    border: 2px solid var(--entry);
-    color: var(--entryText);
+bytle-cell[bytle-state="correct"], bytle-cell[bytle-state="almost"], bytle-cell[bytle-state="notQuite"] {
+    transform: rotateX(360deg);
+    transition: 1s transform, 0.01s background-color ease 0.3s,  0.01s color ease 0.3s, 0.01s border ease 0.3s;
 }
 
 bytle-cell[bytle-state="correct"] {
     background-color: var(--correct);
     color: var(--correctText);
-    border: none;
+    border: 2px solid transparent;
 }
 
 bytle-cell[bytle-state="almost"] {
     background-color: var(--almost);
     color: var(--almostText);
-    border: none;
+    border: 2px solid transparent;
 }
 
 bytle-cell[bytle-state="notQuite"] {
     background-color: var(--notQuite);
     color: var(--notQuiteText);
-    border: none;
+    border: 2px solid transparent;
 }
 
 #bytleNumber {
     font-size: 0.5em;
     color: var(--notQuite);
+}
+
+#options {
+    float: right;
+}
+
+#options a {
+    margin: -0.2em;
+    margin-top: -0.4em;
+    padding: 0.2em;
+    padding-top: 0.4em;
+    color: black;
+    text-decoration: none;
+}
+
+#options a:hover {
+    background-color: var(--notYet);
+}
+
+#options img {
+    position: relative;
+    top: 0.1em;
+    height: 1em;
 }
 
 #entry {
@@ -141,4 +183,10 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 
 input[type="number"] {
     -moz-appearance: textfield;
+}
+
+#badges {
+    position: fixed;
+    bottom: 0;
+    right: 5px;
 }
