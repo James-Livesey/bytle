@@ -45,7 +45,7 @@ function generateBoard() {
 }
 
 export function getBytleNumber() {
-    return Math.round((new Date().getTime() - ZEROTH_BYTLE.getTime()) / DAY_LENGTH);
+    return Math.floor((new Date().getTime() - ZEROTH_BYTLE.getTime()) / DAY_LENGTH);
 }
 
 export function generateTargetNumber() {
