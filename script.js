@@ -45,7 +45,7 @@ function generateBoard() {
 }
 
 export function getBytleNumber() {
-    return Math.floor((new Date().getTime() - ZEROTH_BYTLE.getTime()) / DAY_LENGTH);
+    return Math.floor((new Date().getTime() - ZEROTH_BYTLE.getTime()) / DAY_LENGTH) + 100;
 }
 
 export function generateTargetNumber() {
@@ -77,17 +77,19 @@ function valueToBinary(value) {
 }
 
 export function setStreak(won = false) {
-    var hasStreak = localStorage.getItem("bytle_lastWin") != null;
-    var lastWin = Number(localStorage.getItem("bytle_lastWin"));
+    var hasStreak = localStorage.getItem("bytle_lastBytle") != null;
+    var lastBytle = Number(localStorage.getItem("bytle_lastBytle"));
 
-    if (won && (!hasStreak || new Date().getTime() - lastWin < DAY_LENGTH)) {
+    if (won && (!hasStreak || lastBytle >= getBytleNumber() - 1)) {
         localStorage.setItem("bytle_lastWin", new Date().getTime());
+        localStorage.setItem("bytle_lastBytle", getBytleNumber());
         localStorage.setItem("bytle_winStreak", Number(localStorage.getItem("bytle_winStreak") || 0) + 1);
 
         return Number(localStorage.getItem("bytle_winStreak"));
     }
 
     localStorage.removeItem("bytle_lastWin");
+    localStorage.removeItem("bytle_lastBytle");
     localStorage.setItem("bytle_winStreak", won ? 1 : 0);
 
     return Number(localStorage.getItem("bytle_winStreak"));
