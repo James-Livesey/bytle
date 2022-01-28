@@ -2,11 +2,13 @@ export const TURNS = 6;
 export const WORD_LENGTH = 8;
 export const DAY_LENGTH = 24 * 60 * 60 * 1_000;
 export const ZEROTH_BYTLE = new Date("2022-01-24T00:00:00.000Z");
+export const WIN_MESSAGES = ["Genius", "Magnificent", "Impressive", "Splendid", "Great", "Phew"];
 
 export var main;
 export var board;
 export var entry;
 export var shareButton;
+export var toast;
 
 export var currentRow = 0;
 export var targetNumber = 0;
@@ -50,6 +52,16 @@ export function getBytleNumber() {
 
 export function generateTargetNumber() {
     targetNumber = ((getBytleNumber() * 80085) + 69420) % 256;
+}
+
+export function showToast(message) {
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(function() {
+        toast.classList.remove("show");
+    }, 3_000);
 }
 
 export function setRowValue(value, row = currentRow) {
@@ -173,10 +185,12 @@ export function acceptEntry(value = entry.value, save = true, animate = true) {
 
         if (save) {
             streak = setStreak(true);
+
+            showToast(WIN_MESSAGES[currentRow - 1]);
         }
 
         document.querySelector("#result h2").textContent = "You got it!";
-        document.querySelector("#result #comment").textContent = `You found today's Bytle in ${currentRow.toString(2).padStart(3, "0")} tries. Don't forget to come back tomorrow for another game!`;
+        document.querySelector("#result #comment").textContent = `You found today's Bytle in ${currentRow.toString(2).padStart(4, "0")} tries. Don't forget to come back tomorrow for another game!`;
         document.querySelector("#result #streak").textContent = streak == 1 ? "1 day" : `${streak} days`;
 
         main.setAttribute("bytle-state", "finished won");
@@ -245,6 +259,7 @@ window.addEventListener("load", function() {
     board = document.querySelector("bytle-board");
     entry = document.querySelector("#entry");
     shareButton = document.querySelector("#shareButton");
+    toast = document.querySelector("#toast");
 
     document.querySelector("#bytleNumber").textContent = "#" + getBytleNumber().toString(2).padStart(8, "0");
 
@@ -272,9 +287,17 @@ window.addEventListener("load", function() {
         }
 
         if (event.key == "Enter") {
-            if (entry.value != "") {
-                acceptEntry();
+            if (Number(entry.value) >= 2 ** WORD_LENGTH) {
+                showToast(`Enter a denary number (0 to ${(2 ** WORD_LENGTH) - 1})`);
+
+                return;
             }
+
+            if (entry.value == "") {
+                return;
+            }
+
+            acceptEntry();
 
             return;
         }

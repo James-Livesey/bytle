@@ -185,6 +185,29 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 
+#toast {
+    position: fixed;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    width: -moz-fit-content;
+    width: fit-content;
+    max-width: 80vw;
+    margin: auto;
+    padding: 0.5rem;
+    background-color: var(--notQuite);
+    color: var(--notQuiteText);
+    font-size: 1.2rem;
+    opacity: 0;
+    box-shadow: 0px 5px 20px -5px black;
+    pointer-events: none;
+    transition: 0.5s opacity;
+}
+
+#toast.show {
+    opacity: 1;
+}
+
 #badges {
     position: fixed;
     bottom: 0;
