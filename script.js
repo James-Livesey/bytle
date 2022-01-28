@@ -209,7 +209,7 @@ export function acceptEntry(value = entry.value, save = true, animate = true) {
 }
 
 export function copyGameToClipboard() {
-    var contents = `jamesl.me/bytle ${getBytleNumber().toString(2).padStart(8, "0")} ${currentRow.toString(2).padStart(3, "0")}/110\n\n`;
+    var contents = `jamesl.me/bytle ${getBytleNumber().toString(2).padStart(8, "0")} ${currentRow.toString(2).padStart(4, "0")}/110\n\n`;
 
     for (var i = 0; i < currentRow; i++) {
         var cells = document.querySelectorAll("bytle-row")[i].querySelectorAll("bytle-cell");
